@@ -34,7 +34,6 @@ pub fn revert(client: &mut Client, transaction: &mut Transaction) -> Result<(), 
     transaction.assure_status(TransactionDisputeStatus::DISPUTED)?;
 
     client.chargeback_funds(transaction.amount)?;
-    client.lock()?;
     transaction.dispute_status = TransactionDisputeStatus::REVERSED;
 
     Ok(())
